@@ -11,8 +11,6 @@ import List from './pages/List';
 import About from './pages/About';
 import Home from './pages/Home';
 
-
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -22,18 +20,10 @@ function App() {
 
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/list">List</Link>
-            </li>
-            <li>
-              <Link to="/add">Add</Link>
-            </li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/list">List</Link></li>
+            <li><Link to="/add">Add</Link></li>
           </ul>
         </nav>
 
