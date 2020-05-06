@@ -2,6 +2,10 @@ import React, {useReducer, useState} from "react";
 import PropTypes from "prop-types";
 
 import config from '../config';
+import postUser from '../common/api/postUser'
+import StatusForm from '../components/form/StatusForm';
+import Loading from '../components/form/LoadingForm';
+import useFormState from '../components/form/useFormState'
 
 Add.propTypes = {};
 
@@ -12,63 +16,20 @@ const initValue = {
   userDob: '',
 };
 
-const reducer = (state, {field, value, action}) => {
-  if (action === 'RESET') {
-    return initValue;
-  }
-  return ({ ...state, [field]: value })
-};
-
 function Add (props) {
 
-  const [formSubmitStatus, setFormSubmitStatus] = useState({
-    status: null
-  });
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const [state, dispatch] = useReducer(reducer, initValue);
+  const {submitData, isLoaded, formSubmitStatus, handleInputChange, state} = useFormState(initValue);
   const {userDob, userEmail, userName, userPhone} = state;
 
-  const handleSubmit = (event) => {
-    setIsLoaded(true);
-    fetch(config.backend, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state)
-    }).then(res => res.json()).then((result) => {
-      setFormSubmitStatus({
-        status: 'success'
-      })
-      console.log(result, 'API');
-      dispatch({
-          action: 'RESET'
-      })
-    }, (error) => {
-      setFormSubmitStatus({
-        status: 'error',
-        errorDetails: error
-      })
-    }).finally(()=>{
-      setIsLoaded(false);
-
-    });
+  const submit= (event) => {
     event.preventDefault();
-  };
-
-  const handleInputChange = (event) => dispatch({
-      field: event.target.name,
-      value: event.target.value
-  })
-
-  const showFormStatus = () => {
-    if (!formSubmitStatus.status) { return null; }
-    return <section> {formSubmitStatus.status} </section>
+    submitData(postUser(config, state))
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-        {isLoaded && 'Loading'}
-        {showFormStatus()}
+    <form onSubmit={submit}>
+        <Loading isLoaded={isLoaded} />
+        <StatusForm formSubmitStatus={formSubmitStatus} />
         <label>
           Name:
           <input type="text" required name="userName" value={userName} onChange={handleInputChange} />
