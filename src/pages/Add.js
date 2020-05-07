@@ -5,7 +5,8 @@ import config from '../config';
 import postUser from '../common/api/postUser'
 import StatusForm from '../components/form/StatusForm';
 import Loading from '../components/form/LoadingForm';
-import useFormState from '../components/form/useFormState'
+import useFormState from '../components/form/useFormState';
+import InputForm from '../components/form/controlls/InputForm';
 
 Add.propTypes = {};
 
@@ -30,23 +31,18 @@ function Add (props) {
     <form onSubmit={submit}>
         <Loading isLoaded={isLoaded} />
         <StatusForm formSubmitStatus={formSubmitStatus} />
-        <label>
-          Name:
-          <input type="text" required name="userName" value={userName} onChange={handleInputChange} />
-        </label>
-        <label>
-          Email:
-          <input type="email" required name="userEmail" value={userEmail} onChange={handleInputChange} />
-        </label>
-        <label>
-          Phone:
-          <input type="tel" required name="userPhone" value={userPhone} onChange={handleInputChange} />
-        </label>
-        <label>
-          DoB:
-          <input type="date" required name="userDob" value={userDob} onChange={handleInputChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <InputForm placeholder="Name" required={true} name="userName" value={userName} type="text" onChange={handleInputChange} />
+        <InputForm placeholder="Email" required={true} name="userEmail" value={userEmail} type="email" onChange={handleInputChange} />
+        <InputForm placeholder="Phone" required={true} name="userPhone" value={userPhone} type="tel" onChange={handleInputChange} />
+        <InputForm placeholder="DoB" required={true} name="userDob" value={userDob} type="date" onChange={handleInputChange} />
+        <div class="field is-grouped">
+          <div class="control">
+            <button type="submit" class="button is-link">Submit</button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light">Reset</button>
+          </div>
+        </div>
     </form>
   );
 }
