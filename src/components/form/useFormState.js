@@ -1,42 +1,32 @@
-import React, {useReducer, useState} from "react";
+import React, { useReducer } from "react";
+import useFetchData from "../useFetch";
 
-const reducer = (initValue) => (state, {field, value, action}) => {
-  if (action === 'RESET') {
+const reducer = (initValue) => (state, { field, value, action }) => {
+  if (action === "RESET") {
     return initValue;
   }
-  return ({ ...state, [field]: value })
+  return { ...state, [field]: value };
 };
 
 export default function useFormState(initValue) {
-  const [formSubmitStatus, setFormSubmitStatus] = useState({ status: null, error: null });
-  const [isLoaded, setIsLoaded] = useState(false);
   const [state, dispatch] = useReducer(reducer(initValue), initValue);
+  const { fetchData, status, isLoading } = useFetchData();
 
   const submitData = (postData, successCallback, errorCallback) => {
-    setIsLoaded(true);
-      postData
-      .then(() => {
-        setFormSubmitStatus({ status: 'success' });
-        dispatch({ action: 'RESET'});
-        if (successCallback) successCallback();
-      })
-      .catch(error => {
-        setFormSubmitStatus({ status: 'error', error });
-        if (errorCallback) errorCallback();
-      })
-      .finally(() => setIsLoaded(false));
+    fetchData(postData, successCallback, errorCallback);
   };
 
-  const handleInputChange = (event) => dispatch({
+  const handleInputChange = (event) =>
+    dispatch({
       field: event.target.name,
-      value: event.target.value
-  })
+      value: event.target.value,
+    });
 
-    return {
-      submitData,
-      handleInputChange,
-      formSubmitStatus,
-      isLoaded,
-      state
-    };
-  }
+  return {
+    submitData,
+    handleInputChange,
+    status,
+    isLoading,
+    state,
+  };
+}
