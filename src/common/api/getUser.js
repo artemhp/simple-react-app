@@ -1,7 +1,7 @@
 import config from "../../config";
 
-export default function () {
-  return fetch(config.backend, {
+export default function (id) {
+  return fetch(`${config.backend}/item` + id && `/${id}`, {
     method: "get",
     headers: { "Content-Type": "application/json" },
   })
