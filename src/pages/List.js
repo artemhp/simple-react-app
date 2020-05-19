@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import getList from "../common/api/getUser";
 import LoadingSpinner from "../components/LoadingSpinner";
 import "./List.css";
 import useFetch from "../components/useFetch";
+import { useRouteMatch, Switch, Route, Link } from "react-router-dom";
+import Modal from "../components/Modal";
+import RequestStatus from "../components/RequestStatus";
 
 List.propTypes = {};
 
 function List(props) {
-  const { isLoading, data } = useFetch(getList, []);
+  const { isLoading, data, status } = useFetch(getList, []);
+  let { path, url } = useRouteMatch();
 
   const formatDate = (date) => new Date(date).toLocaleDateString();
 
   const getContent = () => {
     return (
       <div className="columns is-multiline">
-        {data.map((el, index) => (
-          <div key={index} className="column is-one-quarter">
-            <a href="#">
+        {data.map((el) => (
+          <div key={el.id} className="column is-one-quarter">
+            <Link to={`${url}/${el.id}`}>
               <div className="card">
                 <div className="card-image">
                   <figure
@@ -31,20 +35,20 @@ function List(props) {
                   <p className="title">{el.userName}</p>
                   <p className="subtitle">{formatDate(el.userDob)}</p>
                   <p>
-                    <span class="icon">
-                      <i class="fas fa-envelope"></i>
+                    <span className="icon">
+                      <i className="fas fa-envelope"></i>
                     </span>
                     {el.userEmail}
                   </p>
                   <p>
-                    <span class="icon">
-                      <i class="fas fa-phone"></i>
+                    <span className="icon">
+                      <i className="fas fa-phone"></i>
                     </span>
                     {el.userPhone}
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         ))}
       </div>
@@ -52,10 +56,16 @@ function List(props) {
   };
 
   return (
-    <div>
+    <Fragment>
       <LoadingSpinner isLoading={isLoading} />
       {!isLoading && getContent()}
-    </div>
+      <RequestStatus status={status} />
+      <Switch>
+        <Route path={`${path}/:id`}>
+          <Modal />
+        </Route>
+      </Switch>
+    </Fragment>
   );
 }
 

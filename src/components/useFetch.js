@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function useFetchData(postData, defaultData) {
+export default function useFetchData(postData, defaultData, input) {
   const [data, setData] = useState(defaultData);
   const [status, setStatus] = useState({
     status: null,
@@ -25,9 +25,9 @@ export default function useFetchData(postData, defaultData) {
 
   useEffect(() => {
     if (postData) {
-      fetchData(postData());
+      fetchData(postData(input));
     }
-  }, [postData]);
+  }, [postData, input]);
 
   return {
     fetchData,

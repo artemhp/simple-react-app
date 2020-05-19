@@ -25,19 +25,19 @@ app.use(
 );
 
 app.listen(3001, () => {
-  app.get("/item", (req, res, next) => {
+  app.get("/items", (req, res, next) => {
     res.json(Array.from({ length: 12 }, (el) => user()));
   });
-  app.post("/item", (req, res, next) => {
+  app.post("/items", (req, res, next) => {
     res.json(req.body);
   });
-  app.get("/item/:id", (req, res, next) => {
+  app.get("/items/:id", (req, res, next) => {
     res.json(user(true));
   });
-  app.put("/item/:id", (req, res, next) => {
+  app.put("/items/:id", (req, res, next) => {
     res.json(user(true));
   });
-  app.patch("/item/:id", (req, res, next) => {
+  app.patch("/items/:id", (req, res, next) => {
     res.json(user(true));
   });
 });
