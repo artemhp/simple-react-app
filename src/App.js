@@ -10,6 +10,7 @@ import "bulma/css/bulma.css";
 import "./App.css";
 
 function App() {
+  console.log("Appp");
   return (
     <Router>
       <nav
@@ -67,7 +68,7 @@ function App() {
       <footer className="footer">
         <div className="content has-text-centered">
           <p>
-            Simple <strong>React</strong> Application by Artem 2020
+            Simple <strong>React</strong> Application 2020 &copy;
           </p>
         </div>
       </footer>

@@ -3,70 +3,30 @@ import PropTypes from "prop-types";
 import getList from "../common/api/getUser";
 import LoadingSpinner from "../components/LoadingSpinner";
 import "./List.css";
-import useFetch from "../components/useFetch";
+import useFetch from "../common/useFetch";
 import { useRouteMatch, Switch, Route, Link } from "react-router-dom";
 import Modal from "../components/Modal";
 import RequestStatus from "../components/RequestStatus";
+import List from "../components/List";
 
-List.propTypes = {};
+ListPage.propTypes = {};
 
-function List(props) {
+function ListPage() {
   const { isLoading, data, status } = useFetch(getList, []);
-  let { path, url } = useRouteMatch();
-
-  const formatDate = (date) => new Date(date).toLocaleDateString();
-
-  const getContent = () => {
-    return (
-      <div className="columns is-multiline">
-        {data.map((el) => (
-          <div key={el.id} className="column is-one-quarter">
-            <Link to={`${url}/${el.id}`}>
-              <div className="card">
-                <div className="card-image">
-                  <figure
-                    className="image is-4by3"
-                    style={{
-                      backgroundImage: `url(${el.image})`,
-                    }}
-                  ></figure>
-                </div>
-                <div className="card-content">
-                  <p className="title">{el.userName}</p>
-                  <p className="subtitle">{formatDate(el.userDob)}</p>
-                  <p>
-                    <span className="icon">
-                      <i className="fas fa-envelope"></i>
-                    </span>
-                    {el.userEmail}
-                  </p>
-                  <p>
-                    <span className="icon">
-                      <i className="fas fa-phone"></i>
-                    </span>
-                    {el.userPhone}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
+  let { path } = useRouteMatch();
+  console.log("!!!");
   return (
     <Fragment>
       <LoadingSpinner isLoading={isLoading} />
-      {!isLoading && getContent()}
       <RequestStatus status={status} />
+      {!isLoading && <List data={data} />}
       <Switch>
         <Route path={`${path}/:id`}>
-          <Modal />
+          <Modal backTo="/list" />
         </Route>
       </Switch>
     </Fragment>
   );
 }
 
-export default List;
+export default ListPage;

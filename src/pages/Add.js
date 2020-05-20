@@ -30,6 +30,8 @@ function Add(props) {
     submitData(postUser(state));
   };
 
+  console.log("!!!");
+
   return (
     <Fragment>
       {!isLoading && <StatusForm formSubmitStatus={status} />}

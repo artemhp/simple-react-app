@@ -26,7 +26,7 @@ app.use(
 
 app.listen(3001, () => {
   app.get("/items", (req, res, next) => {
-    res.json(Array.from({ length: 12 }, (el) => user()));
+    res.json(Array.from({ length: 300 }, (el) => user()));
   });
   app.post("/items", (req, res, next) => {
     res.json(req.body);

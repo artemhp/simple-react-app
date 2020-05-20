@@ -34,4 +34,4 @@ function StatusForm({ formSubmitStatus }) {
   return null;
 }
 
-export default React.memo(StatusForm);
+export default StatusForm;
