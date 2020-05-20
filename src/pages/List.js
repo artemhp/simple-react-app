@@ -14,7 +14,7 @@ ListPage.propTypes = {};
 function ListPage() {
   const { isLoading, data, status } = useFetch(getList, []);
   let { path } = useRouteMatch();
-  console.log("!!!");
+  console.log("List Page Render");
   return (
     <Fragment>
       <LoadingSpinner isLoading={isLoading} />

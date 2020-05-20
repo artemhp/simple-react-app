@@ -7,6 +7,7 @@ List.propTypes = {};
 
 function List({ data }) {
   let { url } = useRouteMatch();
+  console.log("List Component Render");
   return (
     <div className="columns is-multiline">
       {data.map((el) => (
