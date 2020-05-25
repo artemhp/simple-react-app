@@ -4,8 +4,8 @@ import getList from "../common/api/getUser";
 import LoadingSpinner from "../components/LoadingSpinner";
 import "./List.css";
 import useFetch from "../common/useFetch";
-import { useRouteMatch, Switch, Route, Link } from "react-router-dom";
-import Modal from "../components/Modal";
+import { useRouteMatch, Switch, Route } from "react-router-dom";
+import Details from "../components/Details";
 import RequestStatus from "../components/RequestStatus";
 import List from "../components/List";
 
@@ -22,7 +22,7 @@ function ListPage() {
       {!isLoading && <List data={data} />}
       <Switch>
         <Route path={`${path}/:id`}>
-          <Modal backTo="/list" />
+          <Details backTo="/list" />
         </Route>
       </Switch>
     </Fragment>

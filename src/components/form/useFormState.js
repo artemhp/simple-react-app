@@ -22,9 +22,15 @@ export default function useFormState(initValue) {
       value: event.target.value,
     });
 
+  const handleReset = () =>
+    dispatch({
+      action: "RESET",
+    });
+
   return {
     submitData,
     handleInputChange,
+    handleReset,
     status,
     isLoading,
     state,
