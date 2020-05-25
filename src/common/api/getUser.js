@@ -14,6 +14,6 @@ export default function (id) {
       if (!Array.isArray(res)) {
         return res;
       }
-      return res.slice(0, 8);
+      return res.slice(0, 12);
     });
 }

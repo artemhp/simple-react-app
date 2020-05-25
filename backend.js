@@ -13,6 +13,7 @@ const user = (details) => ({
   userPhone: chance.phone(),
   userDob: chance.date(),
   story: details && chance.paragraph(),
+  rate: Math.floor(Math.random() * 11),
   id: chance.integer({ min: 10000, max: 99999 }),
 });
 
@@ -26,7 +27,7 @@ app.use(
 
 app.listen(3001, () => {
   app.get("/items", (req, res, next) => {
-    res.json(Array.from({ length: 300 }, (el) => user()));
+    res.json(Array.from({ length: 300 }, (el) => user(true)));
   });
   app.post("/items", (req, res, next) => {
     res.json(req.body);
