@@ -10,11 +10,6 @@ const reducer = (initValue) => (state, { field, value, action }) => {
 
 export default function useFormState(initValue) {
   const [state, dispatch] = useReducer(reducer(initValue), initValue);
-  const { fetchData, status, isLoading } = useFetchData();
-
-  const submitData = (postData, successCallback, errorCallback) => {
-    fetchData(postData, successCallback, errorCallback);
-  };
 
   const handleInputChange = (event) =>
     dispatch({
@@ -28,11 +23,8 @@ export default function useFormState(initValue) {
     });
 
   return {
-    submitData,
     handleInputChange,
     handleReset,
-    status,
-    isLoading,
     state,
   };
 }

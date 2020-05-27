@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import postUser from "../common/api/postUser";
 import StatusForm from "../components/form/StatusForm";
 import useFormState from "../components/form/useFormState";
+import useFetchData from "../common/useFetch";
 import InputForm from "../components/form/controlls/InputForm";
 import UserCard from "../components/UserCard";
 
@@ -18,22 +19,14 @@ const initValue = {
 };
 
 function Add(props) {
-  const {
-    submitData,
-    isLoading,
-    status,
-    handleInputChange,
-    handleReset,
-    state,
-  } = useFormState(initValue);
+  const { handleInputChange, handleReset, state } = useFormState(initValue);
+  const { serverRequest, status, isLoading } = useFetchData();
   const { userDob, userEmail, userName, userPhone, image } = state;
 
   const submit = (event) => {
     event.preventDefault();
-    submitData(postUser(state));
+    serverRequest(postUser(state));
   };
-
-  console.log(state);
 
   return (
     <Fragment>
@@ -103,6 +96,13 @@ function Add(props) {
             </div>
           </div>
           <div className="column">
+            {!Object.values(state).filter((el) => el).length && (
+              <div className="container">
+                <p className="title">Start typing in the form</p>
+                <p className="subtitle">and you will see a preview</p>
+              </div>
+            )}
+
             {!!Object.values(state).filter((el) => el).length && (
               <div className="box">
                 <UserCard

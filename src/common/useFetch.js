@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function useFetchData(postData, defaultData, input) {
+export default function useFetchData(serverRequest, defaultData, input) {
   const [data, setData] = useState(defaultData);
   const [status, setStatus] = useState({
     status: null,
@@ -8,9 +8,9 @@ export default function useFetchData(postData, defaultData, input) {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = (postData, successCallback, errorCallback) => {
+  const init = (serverRequest, successCallback, errorCallback) => {
     setIsLoading(true);
-    postData
+    serverRequest
       .then((data) => {
         setData(data);
         setStatus({ status: "success" });
@@ -24,13 +24,13 @@ export default function useFetchData(postData, defaultData, input) {
   };
 
   useEffect(() => {
-    if (postData) {
-      fetchData(postData(input));
+    if (serverRequest) {
+      init(serverRequest(input));
     }
-  }, [postData, input]);
+  }, [serverRequest, input]);
 
   return {
-    fetchData,
+    serverRequest,
     status,
     data,
     isLoading,
