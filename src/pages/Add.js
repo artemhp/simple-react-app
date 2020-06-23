@@ -20,12 +20,13 @@ const initValue = {
 
 function Add(props) {
   const { handleInputChange, handleReset, state } = useFormState(initValue);
-  const { serverRequest, status, isLoading } = useFetchData();
+  const { fetchData, status, isLoading } = useFetchData();
   const { userDob, userEmail, userName, userPhone, image } = state;
 
   const submit = (event) => {
     event.preventDefault();
-    serverRequest(postUser(state));
+    debugger;
+    fetchData(postUser(state));
   };
 
   return (
