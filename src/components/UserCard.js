@@ -13,22 +13,31 @@ function UserCard({ data }) {
         </div>
       )}
       <div className="column">
-        {data.userName && <p className="title">{data.userName}</p>}
-        {data.userDob && <p className="subtitle">{formatDate(data.userDob)}</p>}
-        {data.userEmail && (
+        {data.name && <p className="title">{data.name}</p>}
+        {data.dob && (
+          <p className="subtitle">
+            <strong>DoB:</strong>
+            {formatDate(data.dob)}
+          </p>
+        )}
+        {data.owl && (
           <p>
             <span className="icon">
               <i className="fas fa-envelope"></i>
             </span>
-            {data.userEmail}
+            {data.owl}
           </p>
         )}
-        {data.userPhone && (
+        {data.house && (
           <p>
-            <span className="icon">
-              <i className="fas fa-phone"></i>
-            </span>
-            {data.userPhone}
+            <strong>House: </strong>
+            <span>{data.house}</span>
+          </p>
+        )}
+        {data.rate && (
+          <p>
+            <strong>Points: </strong>
+            <span className="tag is-info">{data.rate}</span>
           </p>
         )}
       </div>

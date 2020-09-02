@@ -4,29 +4,35 @@ import PropTypes from "prop-types";
 import postUser from "../common/api/postUser";
 import StatusForm from "../components/form/StatusForm";
 import useFormState from "../components/form/useFormState";
-import useFetchData from "../common/useFetch";
-import InputForm from "../components/form/controlls/InputForm";
+import useFetch from "../common/useFetch";
+import InputForm from "../components/form/controls/InputForm";
 import UserCard from "../components/UserCard";
 
 Add.propTypes = {};
 
+// Set init value for fields that will be in use in the form that is located on this view.
 const initValue = {
-  userName: "",
-  userEmail: "",
-  userPhone: "",
-  userDob: "",
+  name: "",
+  owl: "",
+  rate: "",
+  dob: "",
   image: "",
+  house: "",
 };
 
 function Add(props) {
+
+  // handleInputChange - an action dispatcher for setting values in the form for specific field.
+  // handleReset - for resetting form.
+  // state - state of the form. Will use it for sending on server.
   const { handleInputChange, handleReset, state } = useFormState(initValue);
-  const { fetchData, status, isLoading } = useFetchData();
-  const { userDob, userEmail, userName, userPhone, image } = state;
+  const { dob, owl, name, rate, image, house } = state;
+
+  const { status, isLoading, send } = useFetch(postUser);
 
   const submit = (event) => {
     event.preventDefault();
-    debugger;
-    fetchData(postUser(state));
+    send(state);
   };
 
   return (
@@ -38,41 +44,50 @@ function Add(props) {
             <InputForm
               placeholder="Name"
               required={true}
-              name="userName"
-              value={userName}
+              name="name"
+              value={name}
               type="text"
               onChange={handleInputChange}
             />
             <InputForm
-              placeholder="Email"
+              placeholder="House"
               required={true}
-              name="userEmail"
-              value={userEmail}
+              name="house"
+              value={house}
+              type="select"
+              options={["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]}
+              onChange={handleInputChange}
+            />
+            <InputForm
+              placeholder="Owl (email)"
+              required={true}
+              name="owl"
+              value={owl}
               type="email"
               onChange={handleInputChange}
             />
             <InputForm
-              placeholder="Phone"
+              placeholder="Initial points"
               required={true}
-              name="userPhone"
-              value={userPhone}
+              name="rate"
+              value={rate}
               type="tel"
               onChange={handleInputChange}
             />
             <InputForm
-              placeholder="DoB"
+              placeholder="Date of Birth"
               required={true}
-              name="userDob"
-              value={userDob}
+              name="dob"
+              value={dob}
               type="date"
               onChange={handleInputChange}
             />
             <InputForm
-              placeholder="Image"
+              placeholder="Photo"
               required={true}
               name="image"
               value={image}
-              type="text"
+              type="url"
               onChange={handleInputChange}
             />
             <div className="field is-grouped">
@@ -109,10 +124,11 @@ function Add(props) {
                 <UserCard
                   data={{
                     image: state.image,
-                    userName: state.userName,
-                    userPhone: state.userPhone,
-                    userEmail: state.userEmail,
-                    userDob: state.userDob,
+                    name: state.name,
+                    rate: state.rate,
+                    owl: state.owl,
+                    dob: state.dob,
+                    house: state.house,
                   }}
                 />
               </div>

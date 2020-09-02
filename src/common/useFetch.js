@@ -8,7 +8,7 @@ export default function useFetchData(serverRequest, defaultData, input) {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = (serverRequest, successCallback, errorCallback) => {
+  const init = (serverRequest, successCallback, errorCallback) => {
     setIsLoading(true);
     serverRequest
       .then((data) => {
@@ -23,16 +23,12 @@ export default function useFetchData(serverRequest, defaultData, input) {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(() => {
-    if (serverRequest) {
-      fetchData(serverRequest(input));
-    }
-  }, [serverRequest, input]);
+  const send = (input) => init(serverRequest(input));
 
   return {
-    fetchData,
     status,
     data,
+    send,
     isLoading,
   };
 }

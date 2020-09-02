@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useEffect } from "react";
+import React, { Fragment, useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import getList from "../common/api/getUser";
 import useFetch from "../common/useFetch";
@@ -11,19 +11,37 @@ import Chart from "../components/Chart";
 Home.propTypes = {};
 
 function Home(props) {
-  const { data, isLoading, status } = useFetch(getList, []);
+  const { data, isLoading, status, send } = useFetch(getList);
+  const [userData, setUserData] = useState(data);
+
+  useEffect(() => {
+    if (data) {
+      setUserData(data.slice(-10));
+    }
+  }, [data]);
+
+  useEffect(() => {
+    send();
+  }, []);
+
+  const updateData = (data) => {
+    setUserData(data);
+  };
+
   return (
     <Fragment>
       <LoadingSpinner isLoading={isLoading} />
       <RequestStatus status={status} />
-      <div className="columns">
-        <div className="column">
-          <Chart data={data} />
+      {!!userData && !!userData.length && (
+        <div className="columns">
+          <div className="column">
+            <Chart data={userData} />
+          </div>
+          <div className="column">
+            {<Table data={userData} updateData={updateData} />}
+          </div>
         </div>
-        <div className="column">
-          <Table data={data} />
-        </div>
-      </div>
+      )}
     </Fragment>
   );
 }

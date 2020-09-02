@@ -13,11 +13,11 @@ function Chart({ data }) {
       data: {
         datasets: [
           {
-            data: data.map((el) => el.story.length),
+            data: data.map((el) => el.rate),
             backgroundColor: colors(),
           },
         ],
-        labels: data.map((el) => el.userName),
+        labels: data.map((el) => el.name),
       },
       options: {
         responsive: true,

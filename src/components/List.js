@@ -7,7 +7,6 @@ List.propTypes = {};
 
 function List({ data }) {
   let { url } = useRouteMatch();
-  console.log("List Component Render");
   return (
     <div className="columns is-multiline">
       {data.map((el) => (
@@ -16,26 +15,29 @@ function List({ data }) {
             <div className="card">
               <div className="card-image">
                 <figure
-                  className="image is-4by3"
+                  className="image is-4by3 is-custom-img-ratio"
                   style={{
                     backgroundImage: `url(${el.image})`,
                   }}
                 ></figure>
               </div>
               <div className="card-content">
-                <p className="title">{el.userName}</p>
-                <p className="subtitle">{formatDate(el.userDob)}</p>
+                <p className="title">{el.name}</p>
+                <p className="subtitle">
+                  <strong>DoB:</strong> {formatDate(el.dob)}
+                </p>
+                <p>
+                  <strong>House:</strong> {el.house}
+                </p>
                 <p>
                   <span className="icon">
                     <i className="fas fa-envelope"></i>
                   </span>
-                  {el.userEmail}
+                  {el.owl}
                 </p>
                 <p>
-                  <span className="icon">
-                    <i className="fas fa-phone"></i>
-                  </span>
-                  {el.userPhone}
+                  <strong>Points: </strong>
+                  <span className="tag is-info">{el.rate}</span>
                 </p>
               </div>
             </div>

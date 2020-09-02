@@ -12,13 +12,18 @@ import List from "../components/List";
 ListPage.propTypes = {};
 
 function ListPage() {
-  const { isLoading, data, status } = useFetch(getList, []);
+  const { isLoading, data, status, send } = useFetch(getList);
+
+  useEffect(() => {
+    send();
+  }, []);
+
   let { path } = useRouteMatch();
   return (
     <Fragment>
       <LoadingSpinner isLoading={isLoading} />
       <RequestStatus status={status} />
-      {!isLoading && <List data={data} />}
+      {!isLoading && data && <List data={data} />}
       <Switch>
         <Route path={`${path}/:id`}>
           <Details backTo="/list" />

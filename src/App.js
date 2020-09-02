@@ -31,32 +31,16 @@ function App() {
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              <Link className="navbar-item" activeClassName="is-active" to="/">
+              <Link className="navbar-item" to="/">
                 Home
               </Link>
-              <Link
-                className="navbar-item"
-                to="/add"
-                activeClassName="is-active"
-                activeStyle={{
-                  fontWeight: "bold",
-                  color: "red",
-                }}
-              >
+              <Link className="navbar-item" to="/add">
                 Add
               </Link>
-              <Link
-                className="navbar-item"
-                activeClassName="is-active"
-                to="/list"
-              >
+              <Link className="navbar-item" to="/list">
                 List
               </Link>
-              <Link
-                className="navbar-item"
-                activeClassName="is-active"
-                to="/about"
-              >
+              <Link className="navbar-item" to="/about">
                 About
               </Link>
             </div>
