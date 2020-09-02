@@ -2,7 +2,7 @@ import React from "react";
 import formatDate from "../common/utils/formatDate";
 import PropTypes from "prop-types";
 import InputForm from "../components/form/controls/InputForm";
-import useForm from "../components/form/useForm";
+import useForm from "../common/useForm";
 
 Table.propTypes = {};
 

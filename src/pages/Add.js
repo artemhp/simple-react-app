@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import postUser from "../common/api/postUser";
 import StatusForm from "../components/form/StatusForm";
-import useForm from "../components/form/useForm";
+import useForm from "../common/useForm";
 import useFetch from "../common/useFetch";
 import InputForm from "../components/form/controls/InputForm";
 import UserCard from "../components/UserCard";
