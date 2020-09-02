@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import getList from "../common/api/getUser";
-import useFetch from "../common/useFetch";
+import useFetch from "../common/hooks/useFetch";
 
 import Table from "../components/Table";
 import LoadingSpinner from "../components/LoadingSpinner";

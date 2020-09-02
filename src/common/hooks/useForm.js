@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import useFetchData from "./useFetch";
 
 const reducer = (initValue) => (state, { field, value, action }) => {
   if (action === "RESET") {

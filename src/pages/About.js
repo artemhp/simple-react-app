@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
-import useFetch from "../common/useFetch";
+import useFetch from "../common/hooks/useFetch";
 import getAbout from "../common/api/getAbout";
 import ReactHtmlParser from "react-html-parser";
 import LoadingSpinner from "../components/LoadingSpinner";
