@@ -2,7 +2,7 @@ import React from "react";
 import formatDate from "../common/utils/formatDate";
 import PropTypes from "prop-types";
 import InputForm from "../components/form/controls/InputForm";
-import useFormState from "../components/form/useFormState";
+import useForm from "../components/form/useForm";
 
 Table.propTypes = {};
 
@@ -13,7 +13,7 @@ const initValue = (data) =>
   }, {});
 
 function Table({ data, updateData }) {
-  const { handleInputChange, handleReset, state } = useFormState(
+  const { handleInputChange, handleReset, state } = useForm(
     initValue(data)
   );
 

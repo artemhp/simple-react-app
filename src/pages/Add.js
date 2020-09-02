@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import postUser from "../common/api/postUser";
 import StatusForm from "../components/form/StatusForm";
-import useFormState from "../components/form/useFormState";
+import useForm from "../components/form/useForm";
 import useFetch from "../common/useFetch";
 import InputForm from "../components/form/controls/InputForm";
 import UserCard from "../components/UserCard";
@@ -25,7 +25,7 @@ function Add(props) {
   // handleInputChange - an action dispatcher for setting values in the form for specific field.
   // handleReset - for resetting form.
   // state - state of the form. Will use it for sending on server.
-  const { handleInputChange, handleReset, state } = useFormState(initValue);
+  const { handleInputChange, handleReset, state } = useForm(initValue);
   const { dob, owl, name, rate, image, house } = state;
 
   const { status, isLoading, send } = useFetch(postUser);

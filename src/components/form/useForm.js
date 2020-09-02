@@ -8,7 +8,7 @@ const reducer = (initValue) => (state, { field, value, action }) => {
   return { ...state, [field]: value };
 };
 
-export default function useFormState(initValue) {
+export default function useForm(initValue) {
   const [state, dispatch] = useReducer(reducer(initValue), initValue);
 
   const handleInputChange = (event) =>
