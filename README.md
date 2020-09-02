@@ -1,7 +1,7 @@
 # Start Project
 
 ```
-yarn
+yarn install
 yarn server
 yarn start
 ```

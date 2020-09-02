@@ -3,19 +3,57 @@ const bodyParser = require("body-parser");
 var cors = require("cors");
 const request = require("request-promise");
 const chance = require("chance").Chance();
+const cache = require("memory-cache");
 
 var app = express();
 
-const user = (details) => ({
-  image: "https://dummyimage.com/800x600/363636/fafafa",
-  userName: chance.name(),
-  userEmail: chance.email(),
-  userPhone: chance.phone(),
-  userDob: chance.date(),
-  story: details && chance.paragraph(),
-  rate: Math.floor(Math.random() * 11),
-  id: chance.integer({ min: 10000, max: 99999 }),
-});
+const user = async (details) => {
+
+  let house;
+  try {
+    house = (
+      await request.get("https://www.potterapi.com/v1/sortingHat")
+    ).slice(1, -1);
+  } catch (error) {
+    house = ['Griffindor', 'Slytherin', 'Hafflepuff', 'Ravenclaw'][chance.integer({ min: 0, max: 3 })]
+  }
+
+  let image = cache.get("image");
+  if (!image) {
+    console.log('New Images');
+    try {
+      image = JSON.parse(
+        await request.get(
+          "https://api.pexels.com/v1/search?query=girl face&per_page=40",
+          {
+            headers: {
+              Authorization:
+                "563492ad6f917000010000012e8212f2d12d4db6aa556721d7b187a5",
+            },
+          }
+        )
+      );
+      cache.put("image", image);
+    } catch (error) {
+      image = {
+        photos: [{ src: { landscape: 'https://dummyimage.com/800x600/363636/fafafa' } }]
+      }
+    }
+    cache.put("image", image);
+  }
+
+  return {
+    image: image.photos[Math.floor( Math.random() * image.photos.length )].src.landscape,
+    name: chance.name({ gender: "female" }),
+    owl: chance.email({ domain: "hogwarts.uk" }),
+    dob: chance.year({ min: 2000, max: 2015 }),
+    rate: chance.integer({ min: 50, max: 300 }),
+    year: chance.integer({ min: 2015, max: 2020 }),
+    id: chance.integer({ min: 10000, max: 9999999 }),
+    story: chance.paragraph({ sentences: 10 }),
+    house: house
+  };
+};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -38,14 +76,19 @@ app.listen(3001, () => {
       `,
     });
   });
-  app.get("/items", (req, res, next) => {
-    res.json(Array.from({ length: 300 }, (el) => user(true)));
+
+  app.get("/items", async (req, res, next) => {
+    let list = [];
+    for await (let num of new Array(20)) {
+      list.push(await user(true));
+    }
+    res.json(list);
   });
   app.post("/items", (req, res, next) => {
     res.json(req.body);
   });
-  app.get("/items/:id", (req, res, next) => {
-    res.json(user(true));
+  app.get("/items/:id", async (req, res, next) => {
+    res.json(await user(true));
   });
   app.put("/items/:id", (req, res, next) => {
     res.json(user(true));

@@ -11,3 +11,7 @@ main {
 body {
   background-color: #fafafa;
 }
+
+.image.is-custom-img-ratio {
+  padding-top: 53%;
+}
