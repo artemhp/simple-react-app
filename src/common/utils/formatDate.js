@@ -1,1 +1,1 @@
-export default (date) => new Date(date).toLocaleDateString();
+export default date => new Date(date).toLocaleDateString();

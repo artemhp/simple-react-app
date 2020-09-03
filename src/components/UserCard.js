@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import formatDate from "../common/utils/formatDate";
+import React from 'react';
+import PropTypes from 'prop-types';
+import formatDate from '../common/utils/formatDate';
 
 UserCard.propTypes = {};
 
@@ -23,7 +23,7 @@ function UserCard({ data }) {
         {data.owl && (
           <p>
             <span className="icon">
-              <i className="fas fa-envelope"></i>
+              <i className="fas fa-envelope" />
             </span>
             {data.owl}
           </p>

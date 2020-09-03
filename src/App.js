@@ -1,23 +1,19 @@
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Footer } from './components/Footer';
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Add from "./pages/Add";
-import List from "./pages/List";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import Add from './pages/Add';
+import List from './pages/List';
+import About from './pages/About';
+import Home from './pages/Home';
 
-import "bulma/css/bulma.css";
-import "./App.css";
+import 'bulma/css/bulma.css';
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <nav
-        className="navbar is-dark is-spaced	"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav className="navbar is-dark is-spaced" role="navigation" aria-label="main navigation">
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">

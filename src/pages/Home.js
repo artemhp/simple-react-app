@@ -1,12 +1,12 @@
-import React, { Fragment, useRef, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import getList from "../common/api/getUser";
-import useFetch from "../common/hooks/useFetch";
+import React, { Fragment, useRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import getList from '../common/api/getUser';
+import useFetch from '../common/hooks/useFetch';
 
-import Table from "../components/Table";
-import LoadingSpinner from "../components/LoadingSpinner";
-import RequestStatus from "../components/RequestStatus";
-import Chart from "../components/Chart";
+import Table from '../components/Table';
+import LoadingSpinner from '../components/LoadingSpinner';
+import RequestStatus from '../components/RequestStatus';
+import Chart from '../components/Chart';
 
 Home.propTypes = {};
 
@@ -24,12 +24,12 @@ function Home(props) {
     send();
   }, []);
 
-  const updateData = (data) => {
+  const updateData = data => {
     setUserData(data);
   };
 
   return (
-    <Fragment>
+    <>
       <LoadingSpinner isLoading={isLoading} />
       <RequestStatus status={status} />
       {!!userData && !!userData.length && (
@@ -38,11 +38,11 @@ function Home(props) {
             <Chart data={userData} />
           </div>
           <div className="column">
-            {<Table data={userData} updateData={updateData} />}
+            <Table data={userData} updateData={updateData} />
           </div>
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

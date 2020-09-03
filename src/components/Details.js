@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { useParams, useHistory } from "react-router-dom";
-import useFetch from "../common/hooks/useFetch";
-import getList from "../common/api/getUser";
-import RequestStatus from "./RequestStatus";
-import LoadingSpinner from "./LoadingSpinner";
-import UserCard from "./UserCard";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useParams, useHistory } from 'react-router-dom';
+import useFetch from '../common/hooks/useFetch';
+import getList from '../common/api/getUser';
+import RequestStatus from './RequestStatus';
+import LoadingSpinner from './LoadingSpinner';
+import UserCard from './UserCard';
 
 Details.propTypes = {};
 
 function Details({ backTo }) {
-  let { id } = useParams();
-  let history = useHistory();
+  const { id } = useParams();
+  const history = useHistory();
 
   const { isLoading, data, status, send } = useFetch(getList);
 
@@ -25,7 +25,7 @@ function Details({ backTo }) {
 
   return (
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">Details</p>
@@ -35,7 +35,7 @@ function Details({ backTo }) {
             onClick={() => {
               history.push(backTo);
             }}
-          ></button>
+          />
         </header>
         <section className="modal-card-body">
           <LoadingSpinner isLoading={isLoading} />

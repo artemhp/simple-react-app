@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 export default function useFetchData(serverRequest, defaultData, input) {
   const [data, setData] = useState(defaultData);
@@ -11,19 +11,19 @@ export default function useFetchData(serverRequest, defaultData, input) {
   const init = (serverRequest, successCallback, errorCallback) => {
     setIsLoading(true);
     serverRequest
-      .then((data) => {
+      .then(data => {
         setData(data);
-        setStatus({ status: "success" });
+        setStatus({ status: 'success' });
         if (successCallback) successCallback();
       })
-      .catch((error) => {
-        setStatus({ status: "error", details: error });
+      .catch(error => {
+        setStatus({ status: 'error', details: error });
         if (errorCallback) errorCallback();
       })
       .finally(() => setIsLoading(false));
   };
 
-  const send = (input) => init(serverRequest(input));
+  const send = input => init(serverRequest(input));
 
   return {
     status,

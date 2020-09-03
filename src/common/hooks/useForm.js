@@ -1,7 +1,7 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react';
 
-const reducer = (initValue) => (state, { field, value, action }) => {
-  if (action === "RESET") {
+const reducer = initValue => (state, { field, value, action }) => {
+  if (action === 'RESET') {
     return initValue;
   }
   return { ...state, [field]: value };
@@ -10,16 +10,16 @@ const reducer = (initValue) => (state, { field, value, action }) => {
 export default function useForm(initValue) {
   const [state, dispatch] = useReducer(reducer(initValue), initValue);
 
-  const handleInputChange = (event) =>
+  const handleInputChange = event =>
     dispatch({
-      field: event.target.name,
-      value: event.target.value,
-    });
+    field: event.target.name,
+    value: event.target.value,
+  });
 
   const handleReset = () =>
     dispatch({
-      action: "RESET",
-    });
+    action: 'RESET',
+  });
 
   return {
     handleInputChange,

@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import ReactHtmlParser from "react-html-parser";
-import useFetch from "../common/hooks/useFetch";
-import getFooter from "../common/api/getFooter";
+import ReactHtmlParser from 'react-html-parser';
+import useFetch from '../common/hooks/useFetch';
+import getFooter from '../common/api/getFooter';
 
 export function Footer() {
   const { data, send } = useFetch(getFooter);

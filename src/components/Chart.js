@@ -1,7 +1,7 @@
-import ChartJS from "chart.js";
-import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
-import colors from "../common/colors";
+import ChartJS from 'chart.js';
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import colors from '../common/colors';
 
 Chart.propTypes = {};
 
@@ -9,20 +9,20 @@ function Chart({ data }) {
   const chartRef = useRef(null);
   useEffect(() => {
     new ChartJS(chartRef.current, {
-      type: "polarArea",
+      type: 'polarArea',
       data: {
         datasets: [
           {
-            data: data.map((el) => el.rate),
+            data: data.map(el => el.rate),
             backgroundColor: colors(),
           },
         ],
-        labels: data.map((el) => el.name),
+        labels: data.map(el => el.name),
       },
       options: {
         responsive: true,
         legend: {
-          position: "bottom",
+          position: 'bottom',
         },
         scale: {
           display: false,

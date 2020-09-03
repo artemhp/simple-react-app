@@ -1,9 +1,9 @@
-import config from "../../config";
+import config from '../../config';
 
 export default function (state) {
   return fetch(`${config.backend}/items`, {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(state),
-  }).then((res) => res.json());
+  }).then(res => res.json());
 }

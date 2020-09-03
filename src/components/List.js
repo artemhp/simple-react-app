@@ -1,15 +1,15 @@
-import React from "react";
-import formatDate from "../common/utils/formatDate";
-import { Link, useRouteMatch } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import formatDate from '../common/utils/formatDate';
 
 List.propTypes = {};
 
 function List({ data }) {
-  let { url } = useRouteMatch();
+  const { url } = useRouteMatch();
   return (
     <div className="columns is-multiline">
-      {data.map((el) => (
+      {data.map(el => (
         <div key={el.id} className="column is-one-quarter">
           <Link to={`${url}/${el.id}`}>
             <div className="card">
@@ -19,7 +19,7 @@ function List({ data }) {
                   style={{
                     backgroundImage: `url(${el.image})`,
                   }}
-                ></figure>
+                />
               </div>
               <div className="card-content">
                 <p className="title">{el.name}</p>
@@ -31,7 +31,7 @@ function List({ data }) {
                 </p>
                 <p>
                   <span className="icon">
-                    <i className="fas fa-envelope"></i>
+                    <i className="fas fa-envelope" />
                   </span>
                   {el.owl}
                 </p>
