@@ -1,3 +1,4 @@
+import { Footer } from './components/Footer';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -10,7 +11,6 @@ import "bulma/css/bulma.css";
 import "./App.css";
 
 function App() {
-  console.log("Appp");
   return (
     <Router>
       <nav
@@ -65,13 +65,7 @@ function App() {
           </Switch>
         </div>
       </main>
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <p>
-            Simple <strong>React</strong> Application 2020 &copy;
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </Router>
   );
 }

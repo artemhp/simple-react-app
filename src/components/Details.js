@@ -41,9 +41,9 @@ function Details({ backTo }) {
           <LoadingSpinner isLoading={isLoading} />
           <RequestStatus status={status} />
           <UserCard data={data} />
-          {/* <div className="columns has-background-light">
+          <div className="columns has-background-light">
             <div className="column">{data.story}</div>
-          </div> */}
+          </div>
         </section>
         <footer className="modal-card-foot">
           <button className="button is-success">Save changes</button>
