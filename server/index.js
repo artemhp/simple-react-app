@@ -16,7 +16,7 @@ const client = contentful.createClient({
 const users = [
   { id: 1, user: 'admin', password: 'admin' },
   { id: 1, user: 'guest', password: 'guest' },
-]
+];
 
 const app = express();
 const PORT = process.env.PORT || 4444;
