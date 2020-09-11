@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 const LoadingSpinner = memo(({ isLoading }) => {
   if (!isLoading) return null;

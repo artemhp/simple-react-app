@@ -28,7 +28,7 @@ function App() {
           <div className="navbar-menu">
             <div className="navbar-start">
               <Link className="navbar-item" to="/">
-                Home
+                Home2
               </Link>
               <Link className="navbar-item" to="/add">
                 Add

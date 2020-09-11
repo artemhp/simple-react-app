@@ -1,9 +1,6 @@
 import ChartJS from 'chart.js';
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import colors from '../common/colors';
-
-Chart.propTypes = {};
 
 function Chart({ data }) {
   const chartRef = useRef(null);
