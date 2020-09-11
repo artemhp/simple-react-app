@@ -7,8 +7,6 @@ import RequestStatus from './RequestStatus';
 import LoadingSpinner from './LoadingSpinner';
 import UserCard from './UserCard';
 
-Details.propTypes = {};
-
 function Details({ backTo }) {
   const { id } = useParams();
   const history = useHistory();
@@ -30,6 +28,7 @@ function Details({ backTo }) {
         <header className="modal-card-head">
           <p className="modal-card-title">Details</p>
           <button
+            type="button"
             className="delete"
             aria-label="close"
             onClick={() => {
@@ -46,8 +45,11 @@ function Details({ backTo }) {
           </div>
         </section>
         <footer className="modal-card-foot">
-          <button className="button is-success">Save changes</button>
+          <button type="button" className="button is-success">
+            Save changes
+          </button>
           <button
+            type="button"
             className="button"
             onClick={() => {
               history.push(backTo);
@@ -60,5 +62,9 @@ function Details({ backTo }) {
     </div>
   );
 }
+
+Details.propTypes = {
+  backTo: PropTypes.string,
+};
 
 export default Details;

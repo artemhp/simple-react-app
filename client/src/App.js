@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Footer } from './components/Footer';
+import Footer from './components/Footer';
 
 import Add from './pages/Add';
 import List from './pages/List';

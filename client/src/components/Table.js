@@ -4,28 +4,28 @@ import formatDate from '../common/utils/formatDate';
 import InputForm from './form/controls/InputForm';
 import useForm from '../common/hooks/useForm';
 
-Table.propTypes = {};
-
-const initValue = data => data.reduce((acc, cur, i) => {
+const initValue = data => {
+  return data.reduce((acc, cur, i) => {
     acc[`i${i}`] = cur.rate;
     return acc;
   }, {});
+};
 
 function Table({ data, updateData }) {
-  const { handleInputChange, handleReset, state } = useForm(initValue(data));
+  const { handleInputChange, state } = useForm(initValue(data));
 
   const handleBlur = () => {
     updateData(
       data.map((el, index) => ({
         ...el,
-        rate: parseInt(state[`i${index}`]),
+        rate: parseInt(state[`i${index}`], 10),
       })),
     );
   };
 
-  const showRows = data => {
-    return data.map((el, index) => (
-      <tr key={index}>
+  const showRows = rows => {
+    return rows.map((el, index) => (
+      <tr key={el.name}>
         <td>{el.name}</td>
         <td>
           <InputForm
@@ -59,5 +59,10 @@ function Table({ data, updateData }) {
     </table>
   );
 }
+
+Table.propTypes = {
+  data: PropTypes.array,
+  updateData: PropTypes.func,
+};
 
 export default Table;

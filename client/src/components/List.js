@@ -3,8 +3,6 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import formatDate from '../common/utils/formatDate';
 
-List.propTypes = {};
-
 function List({ data }) {
   const { url } = useRouteMatch();
   return (
@@ -47,5 +45,9 @@ function List({ data }) {
     </div>
   );
 }
+
+List.propTypes = {
+  data: PropTypes.array,
+};
 
 export default List;

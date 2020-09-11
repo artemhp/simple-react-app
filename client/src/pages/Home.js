@@ -1,5 +1,4 @@
-import React, { Fragment, useRef, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import getList from '../common/api/getUser';
 import useFetch from '../common/hooks/useFetch';
 
@@ -8,9 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import RequestStatus from '../components/RequestStatus';
 import Chart from '../components/Chart';
 
-Home.propTypes = {};
-
-function Home(props) {
+function Home() {
   const { data, isLoading, status, send } = useFetch(getList);
   const [userData, setUserData] = useState(data);
 
@@ -24,8 +21,8 @@ function Home(props) {
     send();
   }, []);
 
-  const updateData = data => {
-    setUserData(data);
+  const updateData = info => {
+    setUserData(info);
   };
 
   return (

@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import postUser from '../common/api/postUser';
 import StatusForm from '../components/form/StatusForm';
@@ -7,8 +6,6 @@ import useForm from '../common/hooks/useForm';
 import useFetch from '../common/hooks/useFetch';
 import InputForm from '../components/form/controls/InputForm';
 import UserCard from '../components/UserCard';
-
-Add.propTypes = {};
 
 // Set init value for fields that will be in use in the form that is located on this view.
 const initValue = {
@@ -20,7 +17,7 @@ const initValue = {
   house: '',
 };
 
-function Add(props) {
+function Add() {
   // handleInputChange - an action dispatcher for setting values in the form for specific field.
   // handleReset - for resetting form.
   // state - state of the form. Will use it for sending on server.

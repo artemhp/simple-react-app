@@ -35,4 +35,15 @@ const InputForm = React.forwardRef(({ name, required, value, type, options, plac
   );
 });
 
+InputForm.propTypes = {
+  name: PropTypes.string,
+  required: PropTypes.bool,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  options: PropTypes.array,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+};
+
 export default InputForm;

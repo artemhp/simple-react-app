@@ -18,7 +18,6 @@
     "lint-staged": "^10.3.0",
     "prettier": "^2.1.1"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {}
 }

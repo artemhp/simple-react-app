@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 import useFetch from '../common/hooks/useFetch';
 import getFooter from '../common/api/getFooter';
 
-export function Footer() {
+function Footer() {
   const { data, send } = useFetch(getFooter);
   useEffect(() => {
     send();
@@ -17,3 +17,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default Footer;

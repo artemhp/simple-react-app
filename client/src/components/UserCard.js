@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import formatDate from '../common/utils/formatDate';
 
-UserCard.propTypes = {};
-
 function UserCard({ data }) {
   return (
     <div className="columns">
@@ -44,5 +42,9 @@ function UserCard({ data }) {
     </div>
   );
 }
+
+UserCard.propTypes = {
+  data: PropTypes.object,
+};
 
 export default UserCard;
