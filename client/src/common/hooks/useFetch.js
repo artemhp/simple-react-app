@@ -8,9 +8,9 @@ export default function useFetchData(serverRequest, defaultData) {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const init = (successCallback, errorCallback) => {
+  const init = (sendServerRequest, successCallback, errorCallback) => {
     setIsLoading(true);
-    serverRequest
+    sendServerRequest
       .then(dataFromServer => {
         setData(dataFromServer);
         setStatus({ status: 'success' });
