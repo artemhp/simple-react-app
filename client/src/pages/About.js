@@ -10,7 +10,7 @@ function About() {
   const { isLoading, data, status, send } = useFetch(getAbout);
   useEffect(() => {
     send();
-  }, []);
+  }, [send]);
   return (
     <div className="content">
       <LoadingSpinner isLoading={isLoading} />

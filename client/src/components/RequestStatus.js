@@ -17,7 +17,7 @@ function RequestStatus({ status }) {
 }
 
 RequestStatus.propTypes = {
-  status: PropTypes.string,
+  status: PropTypes.object,
 };
 
 export default RequestStatus;

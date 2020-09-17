@@ -15,7 +15,7 @@ function Details({ backTo }) {
 
   useEffect(() => {
     send(id);
-  }, []);
+  }, [send, id]);
 
   if (!data) {
     return null;

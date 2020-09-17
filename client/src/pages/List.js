@@ -14,7 +14,7 @@ function ListPage() {
 
   useEffect(() => {
     send();
-  }, []);
+  }, [send]);
 
   const { path } = useRouteMatch();
   return (

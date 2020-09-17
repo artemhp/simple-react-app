@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import ReactHtmlParser from 'react-html-parser';
 import useFetch from '../common/hooks/useFetch';
@@ -8,7 +8,7 @@ function Footer() {
   const { data, send } = useFetch(getFooter);
   useEffect(() => {
     send();
-  }, []);
+  }, [useCallback(send, [])]);
   return (
     <footer className="footer">
       <div className="content has-text-centered">
