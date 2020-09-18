@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import useFetch from '../common/hooks/useFetch';
@@ -7,10 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import RequestStatus from '../components/RequestStatus';
 
 function About() {
-  const { isLoading, data, status, send } = useFetch(getAbout);
-  useEffect(() => {
-    send();
-  }, [send]);
+  const { isLoading, data, status } = useFetch(getAbout, { onMount: true });
   return (
     <div className="content">
       <LoadingSpinner isLoading={isLoading} />

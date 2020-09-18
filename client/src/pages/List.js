@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import getList from '../common/api/getUser';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -10,11 +10,7 @@ import RequestStatus from '../components/RequestStatus';
 import List from '../components/List';
 
 function ListPage() {
-  const { isLoading, data, status, send } = useFetch(getList);
-
-  useEffect(() => {
-    send();
-  }, [send]);
+  const { isLoading, data, status } = useFetch(getList, { onMount: true });
 
   const { path } = useRouteMatch();
   return (

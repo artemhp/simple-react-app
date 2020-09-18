@@ -8,7 +8,7 @@ import RequestStatus from '../components/RequestStatus';
 import Chart from '../components/Chart';
 
 function Home() {
-  const { data, isLoading, status, send } = useFetch(getList);
+  const { data, isLoading, status } = useFetch(getList, { onMount: true });
   const [userData, setUserData] = useState(data);
 
   useEffect(() => {
@@ -16,10 +16,6 @@ function Home() {
       setUserData(data.slice(-10));
     }
   }, [data]);
-
-  useEffect(() => {
-    send();
-  }, []);
 
   const updateData = info => {
     setUserData(info);

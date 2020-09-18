@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams, useHistory } from 'react-router-dom';
 import useFetch from '../common/hooks/useFetch';
@@ -11,11 +11,7 @@ function Details({ backTo }) {
   const { id } = useParams();
   const history = useHistory();
 
-  const { isLoading, data, status, send } = useFetch(getList);
-
-  useEffect(() => {
-    send(id);
-  }, [send, id]);
+  const { isLoading, data, status } = useFetch(getList, { onMount: true, payload: id });
 
   if (!data) {
     return null;

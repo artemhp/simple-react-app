@@ -15,25 +15,28 @@ module.exports = {
     },
   },
   rules: {
-    'linebreak-style': 'off', // This is still unstable.
-    'arrow-parens': 'off', // Incompatible with prettier
-    'object-curly-newline': 'off', // Incompatible with prettier
-    'no-mixed-operators': 'off', // Incompatible with prettier
-    'arrow-body-style': 'off', // Skips functions on one line
-    'function-paren-newline': 'off', // Incompatible with prettier
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'linebreak-style': 'off',
+    'arrow-parens': 'off',
+    'object-curly-newline': 'off',
+    'no-mixed-operators': 'off',
+    'arrow-body-style': 'off',
+    'function-paren-newline': 'off',
     'no-plusplus': 'off',
-    'space-before-function-paren': 0, // Incompatible with prettier
+    'space-before-function-paren': 0,
 
-    'max-len': ['error', 120, 2, { ignoreUrls: true, ignoreStrings: true }], // line length config
-    'no-alert': 'error', // airbnb uses warning
+    'max-len': ['error', 120, 2, { ignoreUrls: true, ignoreStrings: true }],
+    'no-alert': 'error',
     'no-param-reassign': 'off',
-    'react/require-default-props': 'off', // airbnb uses error notification
-    'react/forbid-prop-types': 'off', // airbnb uses error notification
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb uses .jsx
+    'react/require-default-props': 'off',
+    'react/forbid-prop-types': 'off',
+    "no-use-before-define": ['off'],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'prefer-destructuring': 'off',
     'react/no-find-dom-node': 'off',
     'react/no-did-mount-set-state': 'off',
-    'react/no-unused-prop-types': 'off', // This is still unstable.
+    'react/no-unused-prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
     'jsx-a11y/label-has-for': [
@@ -43,8 +46,8 @@ module.exports = {
           every: ['id'],
         },
       },
-    ], // error for nested properties `htmlFor` elements `label`
+    ],
 
-    'prettier/prettier': ['error'], // prettier errors
+    'prettier/prettier': ['error'],
   },
 };

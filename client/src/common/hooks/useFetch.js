@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export default function useFetchData(serverRequest, defaultData) {
-  const [data, setData] = useState(defaultData);
+export default function useFetchData(serverRequest, options = {}) {
+  const { onMount, payload } = options;
+  const [data, setData] = useState();
   const [status, setStatus] = useState({
     status: null,
     details: null,
@@ -24,6 +25,13 @@ export default function useFetchData(serverRequest, defaultData) {
   };
 
   const send = input => init(serverRequest(input));
+
+  const getCachedSend = useCallback(send, []);
+  useEffect(() => {
+    if (onMount) {
+      getCachedSend(payload);
+    }
+  }, [payload, onMount, getCachedSend]);
 
   return {
     status,
