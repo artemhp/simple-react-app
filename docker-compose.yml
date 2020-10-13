@@ -11,6 +11,8 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
+    volumes:
+      - ./client/src:/usr/src/app/src
     tty: true
     container_name: client
     environment:
