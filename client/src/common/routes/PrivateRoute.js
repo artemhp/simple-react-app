@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 export default function PrivateRoute({ children, isAuth, location }) {
   return (
     <Route>
-      {isAuth ? children : <Redirect  to={{ pathname: "/login", state: { from: location.pathname } }} />}
+      {isAuth ? children : <Redirect  to={{
+        pathname: "/login",
+        state: { from: location.pathname }
+      }} />}
     </Route>
   );
 }
