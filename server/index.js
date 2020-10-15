@@ -15,7 +15,7 @@ const client = contentful.createClient({
 
 const users = [
   { id: 1, user: 'admin', password: 'admin' },
-  { id: 1, user: 'guest', password: 'guest' },
+  { id: 2, user: 'guest', password: 'guest' },
 ];
 
 const app = express();
@@ -73,7 +73,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const jwtCheck = expressJwt({ secret: 'mySuperSecretKey', algorithms: ['RS256'] });
+const jwtCheck = expressJwt({ secret: 'mySuperSecretKey', algorithms: ['HS256'] });
 
 app.listen(PORT, () => {
   app.get('/assets', (req, res) => {
@@ -86,7 +86,7 @@ app.listen(PORT, () => {
       .catch(console.error);
   });
 
-  app.get('/items', async (req, res) => {
+  app.get('/items', jwtCheck, async (req, res) => {
     const list = [];
     try {
       // eslint-disable-next-line no-restricted-syntax
@@ -98,28 +98,32 @@ app.listen(PORT, () => {
       res.status(500).send('Oh uh, something went wrong');
     }
   });
-  app.post('/items', (req, res) => {
+  app.post('/items', jwtCheck, (req, res) => {
     res.json(req.body);
   });
+
   app.post('/login', (req, res) => {
-    const isUser = !!users.find(el => el.user === req.body.user).length;
+    if (req && req.body && !req.body.user) {
+      res.status(401).send('Input User and Password');
+    }
+    const currentUser = req.body.user;
+    const listOfUsers = users.filter(el => el.user === currentUser);
+    const isUser = !!listOfUsers.length;
     if (!isUser) {
       res.status(401).send('User not found');
       return;
     }
-    const token = jwt.sign({ sub: user.id, username: user.username }, 'mySuperSecretKey', { expiresIn: '3 hours' });
+    const token = jwt.sign({ sub: user.id, username: user.username }, 'mySuperSecretKey');
     res.status(200).send({ access_token: token });
   });
-  app.get('/secret', jwtCheck, (req, res) => {
-    res.status(200).send('Secret resource, you should be logged in to see this');
-  });
-  app.get('/items/:id', async (req, res) => {
+
+  app.get('/items/:id', jwtCheck, async (req, res) => {
     res.json(await user(true));
   });
-  app.put('/items/:id', (req, res) => {
+  app.put('/items/:id', jwtCheck, (req, res) => {
     res.json(user(true));
   });
-  app.patch('/items/:id', (req, res) => {
+  app.patch('/items/:id', jwtCheck, (req, res) => {
     res.json(user(true));
   });
 });

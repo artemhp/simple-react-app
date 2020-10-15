@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import formatDate from '../common/utils/formatDate';
-import InputForm from './form/controls/InputForm';
+import InputForm from '../common/form/controls/InputForm';
 import useForm from '../common/hooks/useForm';
 
 const initValue = data => {

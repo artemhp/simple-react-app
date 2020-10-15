@@ -1,10 +1,10 @@
 import React from 'react';
 
 import postUser from '../common/api/postUser';
-import StatusForm from '../components/form/StatusForm';
+import StatusForm from '../common/form/StatusForm';
 import useForm from '../common/hooks/useForm';
 import useFetch from '../common/hooks/useFetch';
-import InputForm from '../components/form/controls/InputForm';
+import InputForm from '../common/form/controls/InputForm';
 import UserCard from '../components/UserCard';
 
 // Set init value for fields that will be in use in the form that is located on this view.
