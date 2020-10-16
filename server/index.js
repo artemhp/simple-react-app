@@ -107,7 +107,8 @@ app.listen(PORT, () => {
       res.status(401).send('Input User and Password');
     }
     const currentUser = req.body.user;
-    const listOfUsers = users.filter(el => el.user === currentUser);
+    const currentPassword = req.body.password;
+    const listOfUsers = users.filter(el => el.user === currentUser && el.password === currentPassword);
     const isUser = !!listOfUsers.length;
     if (!isUser) {
       res.status(401).send('User not found');

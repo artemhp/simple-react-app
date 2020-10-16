@@ -10,11 +10,13 @@ export default function useAuth(serverRequest) {
       setToken(data.access_token);
     }
   }, [data]);
+
   const onLogin = (credentials) => {
     return send(credentials);
   }
   return {
     token,
+    status,
     isLoading,
     onLogin,
   };

@@ -9,7 +9,7 @@ function List({ data }) {
     <div className="columns is-multiline">
       {data.map(el => (
         <div key={el.id} className="column is-one-quarter">
-          <Link to={`${url}/${el.id}`}>
+          <Link to={`list/${el.id}`}>
             <div className="card">
               <div className="card-image">
                 <figure

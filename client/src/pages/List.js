@@ -19,7 +19,7 @@ function ListPage() {
       <RequestStatus status={status} />
       {!isLoading && data && <List data={data} />}
       <Switch>
-        <Route path={`${path}/:id`}>
+        <Route path={`/list/:id`}>
           <Details backTo="/list" />
         </Route>
       </Switch>

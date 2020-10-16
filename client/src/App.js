@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
+import Navigation from './components/layout/Navigation';
 import fetchIntercept from 'fetch-intercept';
 import { useHistory } from 'react-router-dom';
 import PrivateRoute from './common/routes/PrivateRoute'
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <Header isAuth={isAuth} />
+      <Navigation isAuth={isAuth} />
       <main>
         <div className="container">
           <Switch>
@@ -55,9 +55,9 @@ function App() {
             <PrivateRoute isAuth={isAuth} path="/add">
               <Add />
             </PrivateRoute>
-            <PrivateRoute isAuth={isAuth} path="/">
-              <Home />
-            </PrivateRoute>
+            <Route path="/">
+              <Home isAuth={isAuth} />
+            </Route>
           </Switch>
         </div>
       </main>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function Header({ isAuth }) {
+export default function Navigation({ isAuth }) {
   return (
     <nav className="navbar is-dark is-spaced" role="navigation" aria-label="main navigation">
       <div className="container">
@@ -19,7 +19,7 @@ export default function Header({ isAuth }) {
           <div className="navbar-start">
             {isAuth && (
               <>
-                <NavLink className="navbar-item" activeClassName="is-active" to="/">Home</NavLink>
+                <NavLink exact className="navbar-item" activeClassName="is-active" to="/">Home</NavLink>
                 <NavLink className="navbar-item" activeClassName="is-active" to="/add">Add</NavLink>
                 <NavLink className="navbar-item" activeClassName="is-active" to="/list">List</NavLink>
               </>
